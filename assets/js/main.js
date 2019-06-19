@@ -14,6 +14,12 @@ $(document).ready(function () {
     var p1Choice;
     var p2Choice;
 
+    function setState(player, state) {
+        database.ref("players/player" + player + "State").set(state);
+
+
+    };
+
     var database = firebase.database();
 
     console.log($("#p1Rock").text());
@@ -22,12 +28,12 @@ $(document).ready(function () {
         p1Choice = $(this).text();
         $("#p1Span").text(p1Choice);
         p1Chosen = true;
-        if (p1Chosen = true){
+        if (p1Chosen = true) {
             //only puts it into databse once a choice is selected and submit button is pushed
-            $("#p1Submit").on("click",function(){
-                database.ref("players/player1State").set("chosen");
+            $("#p1Submit").on("click", function () {
+                setState("1", "chosen");
                 database.ref("players/p1Choice").set(p1Choice);
-                
+
             });
         }
 
@@ -39,13 +45,42 @@ $(document).ready(function () {
         p2Choice = $(this).text();
         $("#p2Span").text(p2Choice);
         p2Chosen = true;
-        if (p2Chosen){
+        if (p2Chosen) {
             //submits info to database
-            $("#p2Submit").on("click",function(){
-                database.ref("players/player2State").set("chosen");
+            $("#p2Submit").on("click", function () {
+                setState("2", "chosen");
                 database.ref("players/p2Choice").set(p2Choice);
+
             });
         };
+    });
+
+
+    $("#reset").on("click", function () {
+        setState("1", "unchosen");
+        setState("2", "unchosen");
+        database.ref("players/p1Choice").set("null");
+        database.ref("players/p2Choice").set("null");
+
+
+
+    });
+
+    database.ref("players").on("value", function (snapshot) {
+        console.log(snapshot.val());
+        if ((snapshot.val().player1State == "chosen") && (snapshot.val().player2State == "chosen")) {
+            console.log(snapshot.val().p1Choice);
+            $("#p1Final").text(snapshot.val().plChoice);
+            $("#p2Final").text(snapshot.val().p2Choice);
+            
+
+
+
+        }
+
+
+
+
     });
 
 });
