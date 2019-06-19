@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RPS Multiplayer</title>
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="assets/js/jQuery.js"></script>
+    <script src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="assets/css/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="text-primary" class="display-4">RPS Multiplayer</h1>
+            </div>
+        </div>
+
+        <div id="gameContainer">
+            <h2>
+                Choose and Submit!
+            </h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="playerDiv" id="p1Div">
+                        <div class="choices">
+                            <button id="p1Rock" class="p1Choice choiceButton">Rock</button>
+                            <button id="p1Paper" class="p1Choice choiceButton">Paper</button>
+                            <button id="p1Scissors" class="p1Choice choiceButton">Scissors</button>
+                        </div>
+                        <div class="submitDiv">
+                            <p class="youChose">You Chose: <span id="p1Span"></span> </p>
+                            <button id="p1Submit" class="submitButton">Submit</button>
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <div class="playerDiv" id="p2Div">
+                        <div class="choices">
+                            <button id="p2Rock" class="p2Choice choiceButton">Rock</button>
+                            <button id="p2Paper" class="p2Choice choiceButton">Paper</button>
+                            <button id="p2Scissors" class="p2Choice choiceButton">Scissors</button>
+                        </div>
+                        <div class="submitDiv">
+                            <p class="youChose">You Chose: <span id="p2Span"></span></p>
+                            <button id="p2Submit" class="submitButton">Submit</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+</body>
+
+</html>
