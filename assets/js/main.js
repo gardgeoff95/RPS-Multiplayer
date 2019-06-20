@@ -13,6 +13,8 @@ $(document).ready(function () {
     firebase.initializeApp(firebaseConfig);
     var p1Choice;
     var p2Choice;
+    
+
 
     function setState(player, state) {
         database.ref("players/player" + player + "State").set(state);
@@ -55,23 +57,62 @@ $(document).ready(function () {
         };
     });
 
+    //this will be reformated later, just used to reset Firebase
 
     $("#reset").on("click", function () {
         setState("1", "unchosen");
         setState("2", "unchosen");
         database.ref("players/p1Choice").set("null");
         database.ref("players/p2Choice").set("null");
+        $("#p1Span, #p2Span, #p1Final, #p2Final, #whoWon").empty();
+        $("#reset").css("display","none");
 
 
 
     });
+    //When the value of "player1State" and "player2State"changes to "chosen" it displays the info to both players
 
+    
     database.ref("players").on("value", function (snapshot) {
         console.log(snapshot.val());
         if ((snapshot.val().player1State == "chosen") && (snapshot.val().player2State == "chosen")) {
+            
+            var p1Final = snapshot.val().p1Choice;
+            console.log(p1Final);
+            var p2Final = snapshot.val().p2Choice;
+            $("#p1Final").text(snapshot.val().p1Choice);
+
             console.log(snapshot.val().p1Choice);
-            $("#p1Final").text(snapshot.val().plChoice);
+
+
             $("#p2Final").text(snapshot.val().p2Choice);
+           
+            if (p1Final == p2Final){
+                $("#whoWon").text("A Tie? How Boring!");
+                $("#reset").css("display","block");
+
+            } else if ((p1Final == "Rock")&&(p2Final=="Scissors")){
+                $("#whoWon").text("Player 1 Won!");
+                $("#reset").css("display","block");
+
+           
+               
+            
+            } else if ((p1Final == "Paper")&&(p2Final == "Rock")){
+                $("#whoWon").text("Player 1 Won!");
+                $("#reset").css("display","block");
+               
+
+            } else if ((p1Final == "Scissors")&&(p2Final == "Paper")){
+                $("#whoWon").text("Player 1 Won!");
+                $("#reset").css("display","block");
+            } else {
+                $("#whoWon").text("Player 2 Won!");
+                $("#reset").css("display","block");
+                
+
+            }
+            
             
 
 

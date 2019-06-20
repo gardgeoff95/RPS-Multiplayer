@@ -71,3 +71,13 @@ h2{
     float: right;
     margin-right: 100px;
 }
+#reset{
+    background-color:rgb(199, 86, 86);
+    border: 2px solid black;
+    color:white;
+    display:none;
+
+}
+#reset:hover{
+    background-color: rgb(119, 14, 14)
+}
